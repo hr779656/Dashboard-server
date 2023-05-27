@@ -5,8 +5,8 @@ const auth_model = require("../Model/Model")
 
 router.post("/user-login", async (req, res)=>{
     const myUser_login = new auth_model.userLogin_model({
-        Username:req.body.Username,
-        Password:req.body.Password
+        username:req.body.username,
+        password:req.body.password
     })
     try{
         const output = await myUser_login.save();
@@ -20,8 +20,8 @@ router.post("/user-login", async (req, res)=>{
 
 router.post("/admin-login", async (req, res)=>{
     const admin_login = new auth_model.adminLogin_model({
-        Username:req.body.Username,
-        Password:req.body.Password,
+        username:req.body.username,
+        password:req.body.password,
         Secretkey:req.body.Secretkey
     })
     try{
