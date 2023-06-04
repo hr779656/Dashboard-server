@@ -16,7 +16,8 @@ app.use("/api",userLOgin_Route)
 const adminLogin_Route = require("./Controller/LOgin")
 app.use("/api",adminLogin_Route)
 
-
+const Main_router = require("./Controller/Main")
+app.use(Main_router)
 
 //  DATA BASE CONNECTION ===========
 mongoose.connect(process.env.CONNECTION_STRING)
