@@ -28,20 +28,29 @@ router.post("/user-login", async (req, res)=>{
 
 
 router.post("/admin-login", async (req, res)=>{
-    const admin_login = new auth_model.adminLogin_model({
-        username:req.body.username,
-        password:req.body.password,
-        Secretkey:req.body.Secretkey
-    })
-    try{
-        const output = await admin_login.save();
-        res.status(200).json(output)
-    }catch{
-        res.status(404).send("admin user Not Saved In data bases")
+    const admin_login = await auth_model.adminLogin_model.findOne({ username:req.body.username })
+
+    if(
+        admin_login.username != req.body.username
+    ){
+        const login_data = await new auth_model.adminLogin_model({
+            username:req.body.username,
+            password:req.body.password,
+            Secretkey:req.body.Secretkey
+        })
+
+        try{
+            const output = await login_data.save();
+            res.status(200).json(output)
+        }catch{
+            res.status(404).send("admin user Not Saved In data bases")
+        }
+
+    }else{
+        res.status(404).send("Admin already saved")
     }
    
 })
-
 
 
 
