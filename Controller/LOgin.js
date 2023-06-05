@@ -3,7 +3,7 @@ const router = express.Router()
 const auth_model = require("../Model/Model")
 
 
-router.post("/user-login", async (req, res)=>{
+router.post("/useR-login", async (req, res)=>{
     const myUser_login = await auth_model.userLogin_model.findOne({ username:req.body.username })
     if(
         myUser_login.username != req.body.username
