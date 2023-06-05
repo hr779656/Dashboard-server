@@ -4,17 +4,26 @@ const auth_model = require("../Model/Model")
 
 
 router.post("/user-login", async (req, res)=>{
-    const myUser_login = new auth_model.userLogin_model({
+    const myUser_login = await auth_model.userLogin_model.findOne({ username:req.body.username })
+    if(
+        myUser_login.username != req.body.username
+    ){
+    
+    const login_data = await new auth_model.userLogin_model({
         username:req.body.username,
         password:req.body.password
     })
+
     try{
-        const output = await myUser_login.save();
+        const output = await login_data.save();
         res.status(200).json(output)
     }catch{
         res.status(404).send("login user Not Saved In data bases")
     }
-   
+
+    }else{
+        res.status(404).send("user Already saved")
+    }
 })
 
 
