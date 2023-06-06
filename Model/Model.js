@@ -2,6 +2,6 @@ const mongoose = require("mongoose")
 const authSchema = require("./Schema")
 
 const userSignup_model = new mongoose.model("users", authSchema.userSignup)
-const adminLogin_model = new mongoose.model("admin", authSchema.adminLogin)
+const adminSignup_model = new mongoose.model("admin", authSchema.adminSignup)
 
-module.exports = {userSignup_model, adminLogin_model}
+module.exports = {userSignup_model, adminSignup_model}

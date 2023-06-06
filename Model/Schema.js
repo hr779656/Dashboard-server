@@ -15,8 +15,12 @@ const userSignup = new mongoose.Schema({
     }
 })
 
-const adminLogin = new mongoose.Schema({
+const adminSignup = new mongoose.Schema({
     username:{
+        type:String,
+        required:true
+    },
+    email:{
         type:String,
         required:true
     },
@@ -24,10 +28,11 @@ const adminLogin = new mongoose.Schema({
         type:String,
         required:true
     },
+    
     Secretkey:{
         type:String,
         required:true
     }
 })
 
-module.exports = {userSignup, adminLogin}
+module.exports = {userSignup, adminSignup}

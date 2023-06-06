@@ -16,35 +16,28 @@ router.post("/user-signup", async (req, res)=>{
         const output = await userSignUp.save();
         res.status(200).json(output)
     }catch{
-        res.status(404).send("login user Not Saved In data bases")
+        res.status(404).send("user Not Saved In data bases")
     }
 
 })
 
 
-router.post("/admin-login", async (req, res)=>{
-    const admin_login = await auth_model.adminLogin_model.findOne({ username:req.body.username })
+router.post("/admin-signup", async (req, res)=>{
 
-    if(
-        admin_login.username != req.body.username
-    ){
-        const login_data = await new auth_model.adminLogin_model({
+        const adminSignup = await new auth_model.adminSignup_model({
             username:req.body.username,
             password:req.body.password,
+            email:req.body.email,
             Secretkey:req.body.Secretkey
         })
 
         try{
-            const output = await login_data.save();
+            const output = await adminSignup.save();
             res.status(200).json(output)
         }catch{
-            res.status(404).send("admin user Not Saved In data bases")
+            res.status(404).send("admin Not Saved In data bases")
         }
 
-    }else{
-        res.status(404).send("Admin already saved")
-    }
-   
 })
 
 

@@ -6,7 +6,7 @@ const Main_router = express.Router()
 Main_router.get("/", async (req, res)=>{
     res.status(200).json({
         userLogin:"https://hr-textile-dashboard.cyclic.app/api/user-signup",
-        adminLogin:"https://hr-textile-dashboard.cyclic.app/api/admin-login"
+        adminLogin:"https://hr-textile-dashboard.cyclic.app/api/admin-signup"
     })
 })
 

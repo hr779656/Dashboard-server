@@ -13,8 +13,8 @@ app.use(express.json())
 const userSignup_Route = require("./Controller/LOgin")
 app.use("/api",userSignup_Route)
 
-const adminLogin_Route = require("./Controller/LOgin")
-app.use("/api",adminLogin_Route)
+const adminSignup_Route = require("./Controller/LOgin")
+app.use("/api",adminSignup_Route)
 
 const Main_router = require("./Controller/Main")
 app.use(Main_router)
