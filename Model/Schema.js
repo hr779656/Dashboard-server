@@ -1,7 +1,11 @@
 const mongoose = require("mongoose")
 
-const userLogin = new mongoose.Schema({
+const userSignup = new mongoose.Schema({
     username:{
+        type:String,
+        required:true
+    },
+    email:{
         type:String,
         required:true
     },
@@ -26,4 +30,4 @@ const adminLogin = new mongoose.Schema({
     }
 })
 
-module.exports = {userLogin, adminLogin}
+module.exports = {userSignup, adminLogin}

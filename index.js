@@ -10,8 +10,8 @@ require("dotenv").config()
 app.use(cors())
 app.use(express.json())
 
-const userLOgin_Route = require("./Controller/LOgin")
-app.use("/api",userLOgin_Route)
+const userSignup_Route = require("./Controller/LOgin")
+app.use("/api",userSignup_Route)
 
 const adminLogin_Route = require("./Controller/LOgin")
 app.use("/api",adminLogin_Route)
