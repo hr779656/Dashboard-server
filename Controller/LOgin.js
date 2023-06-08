@@ -21,6 +21,13 @@ router.post("/user-signup", async (req, res)=>{
 
 })
 
+router.get("/user-signup", async (req, res)=>{
+    
+        const myUsers = await auth_model.userSignup_model.find({})
+        res.status(200).json(myUsers)
+
+})
+
 
 router.post("/admin-signup", async (req, res)=>{
 
@@ -45,18 +52,18 @@ router.post("/user-login", async (req, res)=>{
 
     try{
         const userlogin = await auth_model.userSignup_model.findOne({email:req.body.email})
-        res.status(200).json({msg:"this user is add on data base"})
+        res.status(200).json({msg:"this user is add on data base", userlogin})
     }catch{
         res.status(404).send("user Not Saved In data bases")
     }
 
-})
+})  
 
 router.post("/admin-login", async (req, res)=>{
 
     try{
         const userlogin = await auth_model.userSignup_model.findOne({email:req.body.email})
-        res.status(200).json({msg:"admin is add on data base"})
+        res.status(200).json({msg:"admin is add on data base", userlogin})
     }catch{
         res.status(404).send("admin Not Saved In data bases")
     }
