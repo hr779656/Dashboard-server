@@ -21,13 +21,6 @@ router.post("/user-signup", async (req, res)=>{
 
 })
 
-router.get("/user-signup", async (req, res)=>{
-    
-        const myUsers = await auth_model.userSignup_model.find({})
-        res.status(200).json(myUsers)
-
-})
-
 
 router.post("/admin-signup", async (req, res)=>{
 
