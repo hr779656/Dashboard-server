@@ -7,7 +7,6 @@ const userSignup = new mongoose.Schema({
     },
     email:{
         type:String,
-        unique:true,
         required:true
         
     },
@@ -24,7 +23,8 @@ const adminSignup = new mongoose.Schema({
     },
     email:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     password:{
         type:String,
