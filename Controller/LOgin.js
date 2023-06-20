@@ -55,8 +55,8 @@ router.post("/user-login", async (req, res)=>{
 router.post("/admin-login", async (req, res)=>{
 
     try{
-        const userlogin = await auth_model.userSignup_model.findOne({email:req.body.email})
-        res.status(200).json({msg:"admin is add on data base", userlogin})
+        const adminlogin = await auth_model.adminSignup_model.findOne({Secretkey:req.body.Secretkey})
+        res.status(200).json({msg:"admin is add on data base", adminlogin})
     }catch{
         res.status(404).send("admin Not Saved In data bases")
     }
