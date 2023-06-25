@@ -24,7 +24,7 @@ router.post("/user-signup", async (req, res)=>{
 
 
 router.post("/admin-signup", async (req, res) => {
-    if (req.body.Secretkey === process.env.Secretkey) {
+    if (req.body.Secretkey === process.env.SECRETKEY) {
       try {
         const adminSignup = new auth_model.adminSignup_model({
           username: req.body.username,
