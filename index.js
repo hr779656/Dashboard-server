@@ -7,7 +7,9 @@ require("dotenv").config()
 
 
 //  MIDDLEWARES ====================
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000',
+  }));
 app.use(express.json())
 
 const userSignup_Route = require("./Controller/LOgin")
