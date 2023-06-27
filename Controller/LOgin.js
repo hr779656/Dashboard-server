@@ -45,7 +45,6 @@ router.post("/admin-signup", async (req, res) => {
 
 
 router.post("/user-login", async (req, res)=>{
-
     try{
         const userlogin = await auth_model.userSignup_model.findOne({email:req.body.email})
         res.status(200).json({msg:"this user is add on data base", userlogin})
@@ -55,19 +54,22 @@ router.post("/user-login", async (req, res)=>{
 
 })  
 
-router.post("/admin-login", async (req, res)=>{
-
-    try{
-        const adminlogin = await auth_model.adminSignup_model.findOne({Secretkey:req.body.Secretkey})
-        if(req.body.Secretkey == adminlogin.Secretkey){
-            res.status(200).json({msg:"yes user has saved data based"})
-        }
-    }catch{
-        res.status(404).send("admin Not Saved In data bases")
-    }
-
-})
-
+router.post("/admin-login", async (req, res) => {
+  if (req.body.Secretkey === process.env.SECRETKEY) {
+      try {
+          const adminlogin = await auth_model.adminSignup_model.findOne({ email: req.body.email });
+          if (adminlogin) {
+              res.status(200).json({ msg: "User found in the database", adminlogin });
+          } else {
+              res.status(404).json({ msg: "Admin not found in the database" });
+          }
+      } catch (error) {
+          res.status(500).json({ msg: "Internal server error" });
+      }
+  } else {
+      res.status(401).json({ msg: "Incorrect secret key" });
+  }
+});
 
 
 module.exports = router
