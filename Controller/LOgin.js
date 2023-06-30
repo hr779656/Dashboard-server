@@ -48,7 +48,12 @@ router.post("/user-login", async (req, res)=>{
     try{
         const userlogin = await auth_model.userSignup_model.findOne({email:req.body.email})
         if(userlogin.email == req.body.email){
-        res.status(200).json({msg:"this user is add on data base", userlogin})}
+          if(userlogin.password == req.body.password){
+             res.status(200).json({msg:"this user is add on data base", userlogin})
+          }else{
+            res.status(402).send("your password is incorrect")
+          }
+        }
     }catch{
         res.status(404).send("user Not Saved In data bases")
     }
