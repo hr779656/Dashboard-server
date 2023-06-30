@@ -65,7 +65,11 @@ router.post("/admin-login", async (req, res) => {
       try {
           const adminlogin = await auth_model.adminSignup_model.findOne({ Secretkey: req.body.Secretkey });
           if (adminlogin.email == req.body.email) {
+            if(adminlogin.password == req.body.password){
               res.status(200).json({ msg: "User found in the database", adminlogin});
+            } else {
+              res.status(402).json({ msg: "your password is incorrect" });
+            }
           } else {
               res.status(404).json({ msg: "Admin not found in the database" });
           }
